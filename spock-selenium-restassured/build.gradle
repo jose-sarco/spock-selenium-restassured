@@ -1,0 +1,46 @@
+plugins {
+    id "idea"
+    id "groovy"
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // geb-spock https://mvnrepository.com/artifact/org.gebish
+    testImplementation "org.gebish:geb-spock:$gebVersion"
+    testImplementation "org.gebish:geb-junit4:$gebVersion"
+
+    // Spock https://mvnrepository.com/artifact/org.spockframework
+    testImplementation "org.spockframework:spock-core:$spockVersion"
+    testImplementation "org.spockframework:spock-bom:$spockVersion"
+    testImplementation "org.spockframework:spock-junit4:$spockVersion"
+
+    // JUnit
+    testImplementation "junit:junit:$junitVersion"
+
+    // Selenium https://mvnrepository.com/artifact/org.seleniumhq.selenium
+    implementation "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+    implementation "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+    implementation "org.seleniumhq.selenium:selenium-api:$seleniumVersion"
+
+    //RestAssured https://mvnrepository.com/artifact/io.rest-assured
+    implementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    implementation "io.rest-assured:json-schema-validator:$restAssuredVersion"
+}
+
+wrapper {
+    gradleVersion = 8.10
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
